@@ -1,0 +1,26 @@
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+.venv-dbt/
+
+# Local databases
+*.duckdb
+*.duckdb.wal
+
+# Raw datasets
+data/raw/
+
+# dbt generated files
+dbt_paysense/target/
+dbt_paysense/logs/
+dbt_paysense/dbt_packages/
+
+# macOS files
+.DS_Store
+
+# Secrets
+.env
