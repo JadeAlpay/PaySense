@@ -186,4 +186,4 @@ The demonstration generates synthetic groups and outcomes from assumed rates, th
 
 ## Author
 
-Independent product analytics portfolio project. Add your GitHub profile, LinkedIn and/or contact links here once ready to publish.
+www.linkedin.com/in/ceydaalpay
