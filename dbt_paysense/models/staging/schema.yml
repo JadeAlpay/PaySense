@@ -1,0 +1,80 @@
+
+version: 2
+
+models:
+  - name: stg_orders
+    description: >
+      Cleaned Olist order records.
+      One row per order.
+
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: order_status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - delivered
+                  - shipped
+                  - canceled
+                  - unavailable
+                  - invoiced
+                  - processing
+                  - created
+                  - approved
+
+      - name: purchased_at
+        data_tests:
+          - not_null
+
+  - name: stg_payments
+    description: Raw payment records, cleaned and typed.
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+
+      - name: payment_sequence
+        data_tests:
+          - not_null
+
+      - name: payment_method
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - credit_card
+                  - boleto
+                  - voucher
+                  - debit_card
+                  - not_defined
+
+      - name: payment_amount
+        data_tests:
+          - not_null
+
+  - name: stg_reviews
+    description: Customer reviews, cleaned and typed.
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+
+      - name: review_score
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
+

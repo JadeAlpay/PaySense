@@ -1,0 +1,4 @@
+# dbt development environment (Python 3.13 recommended)
+dbt-duckdb
+pandas
+numpy

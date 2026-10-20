@@ -1,0 +1,17 @@
+
+name: paysense
+version: '1.0.0'
+config-version: 2
+
+profile: paysense
+
+model-paths: ["models"]
+
+models:
+  paysense:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

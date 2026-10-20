@@ -1,0 +1,8 @@
+# Streamlit dashboard and analysis tools
+streamlit
+plotly
+pandas
+numpy
+duckdb
+scipy
+statsmodels

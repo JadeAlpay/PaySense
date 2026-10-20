@@ -1,0 +1,35 @@
+
+version: 2
+
+models:
+  - name: fct_order_experience
+    description: >
+      Order-level fact table combining payments,
+      reviews and delivery performance.
+      Exactly one row per order.
+
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: order_status
+        data_tests:
+          - not_null
+
+      - name: payment_method
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - credit_card
+                  - boleto
+                  - debit_card
+                  - voucher
+                  - multiple
+                  - not_defined

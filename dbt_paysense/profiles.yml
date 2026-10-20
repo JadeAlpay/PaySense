@@ -1,0 +1,9 @@
+
+paysense:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../paysense_analytics.duckdb
+      schema: main
+      threads: 2

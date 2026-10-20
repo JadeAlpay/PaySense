@@ -1,0 +1,19 @@
+
+version: 2
+
+models:
+  - name: int_order_payments
+    description: One row per order containing payment totals.
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: int_order_reviews
+    description: One row per order containing review metrics.
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null

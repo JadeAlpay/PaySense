@@ -1,0 +1,2 @@
+experiment_id,data_type,seed,control_rate,treatment_rate,effect_pp,ci_lower_pp,ci_upper_pp,p_value,n_control,n_treatment,conclusion
+EXP-001,SIMULATED,42,0.3048,0.2408,-6.400000000000003,-9.870088962906788,-2.9094377907678366,0.0003277902403960922,1250,1250,Evidence of a reduction in low ratings.
