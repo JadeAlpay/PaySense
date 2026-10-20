@@ -244,7 +244,7 @@ def section_close():
 
 
 def fmt_pct(x):
-    return f"{x:.2f}%"
+    return f"{x:.1f}%"
 
 
 # -----------------------------
@@ -325,13 +325,13 @@ k1, k2, k3, k4, k5 = st.columns(5)
 with k1:
     metric_card("Orders analysed", f"{orders:,}", "Delivered, reviewed orders")
 with k2:
-    metric_card("Average rating", f"{avg_rating:.2f}/5", "Mean review score")
+    metric_card("Average rating", f"{avg_rating:.1f}/5", "Mean review score")
 with k3:
-    metric_card("Low-rating rate", f"{low_rate:.2f}%", f"{low_count:,} orders rated 1–2")
+    metric_card("Low-rating rate", f"{low_rate:.1f}%", f"{low_count:,} orders rated 1–2")
 with k4:
-    metric_card("Late-delivery rate", f"{late_rate:.2f}%", f"{late_count:,} delayed deliveries")
+    metric_card("Late-delivery rate", f"{late_rate:.1f}%", f"{late_count:,} delayed deliveries")
 with k5:
-    metric_card("Avg order value", f"R${avg_order_value:,.2f}", "Average order payment")
+    metric_card("Avg order value", f"R${avg_order_value:,.1f}", "Average order payment")
 
 st.markdown("")
 
@@ -608,7 +608,7 @@ with tab2:
                 "low_ratings": "Low-rated orders",
                 "low_rating_pct": "Low-rating rate (%)",
             }
-        ).round(2),
+        ).round(1),
         use_container_width=True,
         hide_index=True,
     )
@@ -684,7 +684,7 @@ with tab3:
             template="plotly_white",
             color_discrete_sequence=[TEAL],
         )
-        fig_value.update_traces(texttemplate="R$%{text:.0f}", textposition="outside")
+        fig_value.update_traces(texttemplate="R$%{text:.1f}", textposition="outside")
         fig_value.update_layout(
             title="Average order value by payment method",
             xaxis_title="",
@@ -703,7 +703,7 @@ with tab3:
         "low_rating_pct": "Low-rating rate (%)",
         "late_delivery_pct": "Late-delivery rate (%)",
         "avg_order_value": "Avg order value (BRL)",
-    }).round(2)
+    }).round(1)
 
     st.dataframe(display_table, use_container_width=True, hide_index=True)
 
@@ -822,9 +822,9 @@ with tab4:
             ].to_numpy(),
             hovertemplate=(
                 "<b>%{y}</b>"
-                "<br>Odds ratio: %{x:.2f}"
-                "<br>95% CI: %{customdata[0]:.2f}"
-                "–%{customdata[1]:.2f}"
+                "<br>Odds ratio: %{x:.1f}"
+                "<br>95% CI: %{customdata[0]:.1f}"
+                "–%{customdata[1]:.1f}"
                 "<br>p-value: %{customdata[2]:.4f}"
                 "<extra></extra>"
             )
@@ -872,20 +872,20 @@ with tab4:
 
         with a:
             st.success(
-                "**Late delivery: OR 16.91**\n\n"
+                "**Late delivery: OR 16.9**\n\n"
                 "Late deliveries have approximately 16.9 "
                 "times the odds of a low rating, holding "
                 "payment method and order value constant.\n\n"
-                "95% CI: 15.96–17.92."
+                "95% CI: 16.0–17.9."
             )
 
         with b:
             st.info(
-                "**Voucher: OR 1.28**\n\n"
-                "Voucher-only orders show approximately "
-                "28% higher adjusted odds of a low rating "
+                "**Voucher: OR 1.3**\n\n"
+                "Voucher-only orders show "
+                "approximately 27.6% higher adjusted odds of a low rating "
                 "than credit-card-only orders.\n\n"
-                "95% CI: 1.05–1.55."
+                "95% CI: 1.1–1.5."
             )
 
         st.warning(
@@ -1058,17 +1058,17 @@ deterioration.
 
         m1.metric(
             "Voucher cancellation · Full",
-            f"{voucher['full_rate']:.2f}%"
+            f"{voucher['full_rate']:.1f}%"
         )
 
         m2.metric(
             "Voucher cancellation · Baseline",
-            f"{voucher['baseline_rate']:.2f}%"
+            f"{voucher['baseline_rate']:.1f}%"
         )
 
         m3.metric(
             "Card cancellation · Baseline",
-            f"{card['baseline_rate']:.2f}%"
+            f"{card['baseline_rate']:.1f}%"
         )
 
         st.markdown("### Effect of the analysis window")
@@ -1111,7 +1111,7 @@ deterioration.
         )
 
         fig_cancel.update_traces(
-            texttemplate="%{text:.2f}%",
+            texttemplate="%{text:.1f}%",
             textposition="outside"
         )
 
@@ -1145,7 +1145,7 @@ deterioration.
                 "canceled_orders": "Cancelled orders",
                 "missing_approval": "Missing approvals",
                 "missing_approval_pct": "Missing (%)"
-            }).round(2),
+            }).round(1),
             hide_index=True,
             use_container_width=True
         )
@@ -1276,17 +1276,17 @@ with tab5:
 
         c1.metric(
             "Control low-rating rate",
-            f"{metrics['control_rate']:.2%}"
+            f"{metrics['control_rate']:.1%}"
         )
 
         c2.metric(
             "Treatment low-rating rate",
-            f"{metrics['treatment_rate']:.2%}"
+            f"{metrics['treatment_rate']:.1%}"
         )
 
         c3.metric(
             "Absolute difference",
-            f"{metrics['effect_pp']:+.2f} pp"
+            f"{metrics['effect_pp']:+.1f} pp"
         )
 
         c4.metric(
@@ -1316,7 +1316,7 @@ with tab5:
         )
 
         fig.update_traces(
-            texttemplate="%{text:.2f}%",
+            texttemplate="%{text:.1f}%",
             textposition="outside"
         )
 
@@ -1337,13 +1337,13 @@ with tab5:
 
         st.write(
             f"**Observed treatment effect:** "
-            f"{metrics['effect_pp']:+.2f} percentage points"
+            f"{metrics['effect_pp']:+.1f} percentage points"
         )
 
         st.write(
             f"**95% confidence interval:** "
-            f"[{metrics['ci_lower_pp']:.2f}, "
-            f"{metrics['ci_upper_pp']:.2f}] pp"
+            f"[{metrics['ci_lower_pp']:.1f}, "
+            f"{metrics['ci_upper_pp']:.1f}] pp"
         )
 
         st.write(
@@ -1403,7 +1403,7 @@ simulated results alone.
             "Experiment results are fixed and independent "
             "of the observational dashboard filters."
         )
-# dbt-powered product KPIs
+# Product KPIs
 st.divider()
 render_dbt_kpis()
 
